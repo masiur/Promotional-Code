@@ -1,5 +1,4 @@
-<!DOCTYPE html> <.>
-<html>
+<!DOCTYPE html>
 <head>
 	<title>Complete Your Registration</title>
 </head>
@@ -46,11 +45,11 @@
 			die("connection failed: " . $conn->connect_error);
 		}
 
-		$sql = SELECT * FROM information_schema.COLUMNS 
+		$sql = "SELECT * FROM information_schema.COLUMNS 
 					WHERE 
 					    TABLE_SCHEMA = 'payment_system' 
 					AND TABLE_NAME = 'str_key' 
-					AND COLUMN_NAME = 'key_uniq'
+					AND COLUMN_NAME = 'key_uniq'";
 		
 		} else {
 			echo "Error: " . $sql. "<br>". $conn->error;
