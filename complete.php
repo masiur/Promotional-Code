@@ -45,11 +45,9 @@
 			die("connection failed: " . $conn->connect_error);
 		}
 
-		$sql = "SELECT * FROM information_schema.COLUMNS 
-					WHERE 
-					    TABLE_SCHEMA = 'payment_system' 
-					AND TABLE_NAME = 'str_key' 
-					AND COLUMN_NAME = 'key_uniq'";
+		$sql = "UPDATE str_key
+				SET is_used = '1'
+				WHERE key_uniq = '$ukey', is_used ='0'";
 		
 		} else {
 			echo "Error: " . $sql. "<br>". $conn->error;
