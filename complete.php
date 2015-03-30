@@ -47,7 +47,8 @@
 
 		$sql = "UPDATE str_key
 				SET is_used = '1'
-				WHERE key_uniq = '$ukey', is_used ='0'";
+				WHERE key_uniq = '$ukey'
+				AND is_used ='0'";
 		
 		} else {
 			echo "Error: " . $sql. "<br>". $conn->error;
