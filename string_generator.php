@@ -29,7 +29,7 @@ try {
 	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	
 	$sql = "INSERT INTO str_key (key_uniq, is_used)
-	VALUES ('$val','1')";
+	VALUES ('$val','0')";
 	// use exec because no results are returned
 	$conn->exec($sql);
 	echo "New record created successfully";
