@@ -28,7 +28,9 @@
 			die("connection failed: " . $conn->connect_error);
 		}
 
-		$sql = "UPDATE str_key
+		$sql = "BEGIN
+					IF 
+		UPDATE str_key
 				SET is_used = '1'
 				WHERE key_uniq = '$ukey'
 				AND is_used ='0'";
