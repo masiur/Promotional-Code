@@ -23,22 +23,96 @@
 		return $data;
 	}
 
+
+	function isEmailExist($email){
+		$conn = mysqli_connect("localhost","root","","payment_system");
+		if ($conn->connect_error) {
+			die("connection failed: " . $conn->connect_error);  
+		}
+		$sql4 = "SELECT * FROM user_data1
+				WHERE email ='$email'";
+				
+		if ($conn->query($sql4) === TRUE ) {
+			return TRUE;
+		}
+		else {
+			return FALSE;
+		}
+	}
+
+	function isKeyExist($key_input){
 		$conn = mysqli_connect("localhost","root","","payment_system");
 		if ($conn->connect_error) {
 			die("connection failed: " . $conn->connect_error);
 		}
+		$sql2 ="SLECT * FROM str_key
+				WHERE key_uniq = '$key_input' AND is_used ='0'";
+		if ($conn->query($sql2)=== TRUE )
+			return TRUE;
+		else {
+			return FALSE;
+			}
+	}
 
-		$sql = "BEGIN
-					IF 
-		UPDATE str_key
+	function updateFinal($email,$key_input){
+		$conn = mysqli_connect("localhost","root","","payment_system");
+		if ($conn->connect_error) {
+			die("connection failed: " . $conn->connect_error);
+		}
+		$sql = "UPDATE str_key
 				SET is_used = '1'
 				WHERE key_uniq = '$ukey'
 				AND is_used ='0'";
 		if ($conn->query($sql)=== TRUE ) {
-			echo " Record Successfully Updated";
+			$sql2 = "UPDATE 
+					SET is_valid = '1'
+					WHERE email = '$email'";
+			if ($conn->query($sql2)=== TRUE ) {
+				
+				return true;
+			} else {
+				return false;
+			}
 
 		} else {
-			echo "Error: " . $sql. "<br>". $conn->error;
+			return false;
 		}
-		$conn->close();	
+	}
+
+
+
+	
+
+		
+
+		//call to checkemail
+		if(isEmailExist($email)){
+			if(isKeyExist($ukey)){
+				if(updateFinal($email,$ukey)){
+					echo "UpdateDone";
+				}
+				else{
+					echo "Something went wrong";
+				}
+			}
+			else{
+				echo "Key Invalid or Used";
+			}
+		}
+		else{
+			echo "Emaailnotfound";
+		}
+
+		// $sql = "
+		// UPDATE str_key
+		// 		SET is_used = '1'
+		// 		WHERE key_uniq = '$ukey'
+		// 		AND is_used ='0'";
+		// if ($conn->query($sql)=== TRUE ) {
+		// 	echo " Record Successfully Updated";
+
+		// } else {
+		// 	echo "Error: " . $sql. "<br>". $conn->error;
+		// }
+		// $conn->close();	
 ?>
