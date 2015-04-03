@@ -23,13 +23,12 @@
 		return $data;
 	}
 
-
 	function isEmailExist($email){
 		$conn = mysqli_connect("localhost","root","","payment_system");
 		if ($conn->connect_error) {
 			die("connection failed: " . $conn->connect_error);  
 		}
-		$sql4 = "SELECT * FROM user_data1
+		$sql4 = "SELECT * FROM user_data1 
 				WHERE email ='$email'";
 				
 		if ($conn->query($sql4) === TRUE ) {
@@ -79,27 +78,21 @@
 		}
 	}
 
-
-
-	
-
-		
-
 		//call to checkemail
-		if(isEmailExist($email)){
-			if(isKeyExist($ukey)){
-				if(updateFinal($email,$ukey)){
+		if(isEmailExist($email)) {
+			if(isKeyExist($ukey)) {
+				if(updateFinal($email,$ukey)) {
 					echo "UpdateDone";
 				}
-				else{
+				else {
 					echo "Something went wrong";
 				}
 			}
-			else{
+			else {
 				echo "Key Invalid or Used";
 			}
 		}
-		else{
+		else {
 			echo "Emaailnotfound";
 		}
 
