@@ -79,6 +79,7 @@
 	}
 
 		//call to checkemail
+	
 		if(isEmailExist($email)) {
 			if(isKeyExist($ukey)) {
 				if(updateFinal($email,$ukey)) {
@@ -93,7 +94,7 @@
 			}
 		}
 		else {
-			echo "Emaailnotfound";
+			echo "Emaail notfound";
 		}
 
 		// $sql = "
