@@ -34,6 +34,8 @@ try {
 	$conn->exec($sql);
 	echo "New record created successfully";
 	}
+
+	
 catch(PDOException $e) {
 	echo $sql . "<br>" . $e->getMessage();
 	}
