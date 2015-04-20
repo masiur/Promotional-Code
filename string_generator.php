@@ -33,6 +33,7 @@ try {
 	// use exec because no results are returned
 	$conn->exec($sql);
 	echo "New record created successfully";
+	echo "NewUpdate." //Here is a Update
 	}
 
 	
